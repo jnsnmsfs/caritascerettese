@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caritas Parrocchiale Cerettese – SS. Nome di Maria</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --red-dark: #8B0000;
+    --red-light: #e8c0c8;
+    --gold: #C9A84C;
+    --cream: #FAF6F0;
+    --warm-white: #FFFDF9;
+    --dark: #1A1A1A;
+    --gray: #5A5A5A;
+    --light-gray: #F0EBE3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAVIGATION */
+  nav {
+    background: var(--warm-white);
+    border-bottom: 3px solid var(--red);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 2rem;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+  }
+  .logo-svg {
+    width: 52px; height: 52px;
+  }
+  .nav-title {
+    line-height: 1.15;
+  }
+  .nav-title .main { 
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; 
+    color: var(--red); 
+    font-weight: 700;
+    display: block;
+  }
+  .nav-title .sub { 
+    font-size: 0.72rem; 
+    color: var(--gray); 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em;
+    display: block;
+  }
+  .nav-links { display: flex; gap: 0.3rem; }
+  .nav-links a {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.88rem;
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--red);
+    color: white;
+  }
+
+  /* PAGES */
+  .page { display: none; animation: fadeIn 0.4s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== HOME PAGE ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 50%, #D94060 100%);
+    color: white;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-logo-wrap {
+    display: inline-block;
+    background: white;
+    border-radius: 50%;
+    padding: 1.2rem;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  .hero .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.88;
+    margin-bottom: 0.4rem;
+    font-style: italic;
+  }
+  .hero .parish {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .verse-banner {
+    background: var(--gold);
+    color: white;
+    text-align: center;
+    padding: 1.1rem 2rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+  .verse-banner span { opacity: 0.75; font-size: 0.8rem; font-style: normal; margin-left: 0.5rem; }
+
+  .home-content { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem; }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+  }
+  @media(max-width:700px){ .mission-grid { grid-template-columns: 1fr; } }
+
+  .mission-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.85rem;
+    color: var(--red-dark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .mission-text p {
+    line-height: 1.8;
+    color: var(--gray);
+    margin-bottom: 1rem;
+    font-size: 0.97rem;
+  }
+  .mission-text .scripture {
+    background: var(--light-gray);
+    border-left: 4px solid var(--gold);
+    padding: 1rem 1.2rem;
+    font-style: italic;
+    color: var(--dark);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.93rem;
+    margin-top: 1.2rem;
+  }
+  .mission-text .scripture cite { display: block; font-style: normal; font-size: 0.78rem; color: var(--gray); margin-top: 0.4rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .church-img-box {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.14);
+    position: relative;
+  }
+  .church-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .church-img-box .overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.6));
+    color: white;
+    padding: 1rem 1.2rem 0.8rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  .services-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--red-dark);
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+  .services-section .divider {
+    width: 60px; height: 3px; background: var(--gold);
+    margin: 0 auto 2.2rem;
+    border-radius: 2px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .service-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    border-top: 4px solid var(--red);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.13); }
+  .service-card .icon { font-size: 2.4rem; margin-bottom: 0.8rem; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--red-dark); margin-bottom: 0.5rem; }
+  .service-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--red-dark), var(--red));
+    color: white;
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .cta-section h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.7rem; }
+  .cta-section p { opacity: 0.85; margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .btn-white {
+    display: inline-block;
+    background: white;
+    color: var(--red);
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-white:hover { transform: scale(1.04); }
+
+  /* ===== CONTATTI ===== */
+  .page-header {
+    background: linear-gradient(135deg, var(--red-dark), var(--red));
+    color: white;
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+  }
+  .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; }
+  .page-header p { opacity: 0.82; margin-top: 0.5rem; font-style: italic; }
+
+  .contact-content { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  @media(max-width:650px){ .contact-grid { grid-template-columns: 1fr; } }
+
+  .contact-info h2 { font-family: 'Playfair Display', serif; color: var(--red-dark); font-size: 1.5rem; margin-bottom: 1.2rem; }
+  .contact-item { display: flex; gap: 0.9rem; margin-bottom: 1.3rem; align-items: flex-start; }
+  .contact-item .ci-icon {
+    background: var(--red);
+    color: white;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .contact-item .ci-text strong { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); margin-bottom: 0.15rem; }
+  .contact-item .ci-text span { font-size: 0.95rem; color: var(--dark); }
+
+  .scripture-box {
+    background: var(--light-gray);
+    border-radius: 10px;
+    padding: 1.8rem;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  .scripture-box .cross { font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .scripture-box blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--dark); line-height: 1.7; }
+  .scripture-box cite { display: block; font-style: normal; font-size: 0.78rem; color: var(--gray); margin-top: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+  .contact-form-box { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+  .contact-form-box h2 { font-family: 'Playfair Display', serif; color: var(--red-dark); font-size: 1.5rem; margin-bottom: 1.2rem; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray); margin-bottom: 0.4rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 0.7rem 0.9rem;
+    border: 2px solid #E8E0D5;
+    border-radius: 6px;
+    font-family: inherit; font-size: 0.92rem;
+    transition: border-color 0.2s;
+    background: var(--cream);
+    color: var(--dark);
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--red); }
+  .form-group textarea { height: 120px; resize: vertical; }
+  .btn-red {
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .btn-red:hover { background: var(--red-dark); }
+
+  /* ===== FOTO ===== */
+  .foto-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+  .foto-intro { text-align: center; margin-bottom: 2.5rem; }
+  .foto-intro h2 { font-family: 'Playfair Display', serif; color: var(--red-dark); font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .foto-intro p { color: var(--gray); font-size: 0.95rem; font-style: italic; }
+  .foto-intro .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 0.8rem auto 0; border-radius: 2px; }
+
+  .foto-tabs { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .foto-tab {
+    padding: 0.5rem 1.3rem;
+    border-radius: 30px;
+    border: 2px solid var(--red-light);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    color: var(--gray);
+    font-family: inherit;
+  }
+  .foto-tab.active, .foto-tab:hover { background: var(--red); color: white; border-color: var(--red); }
+
+  .foto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.2rem;
+  }
+  .foto-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    transition: transform 0.25s;
+  }
+  .foto-card:hover { transform: translateY(-5px); }
+  .foto-card .img-placeholder {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .foto-card .img-placeholder.church-real img { width: 100%; height: 100%; object-fit: cover; }
+  .foto-card .foto-caption { padding: 0.9rem 1rem 1rem; }
+  .foto-card .foto-caption strong { display: block; font-size: 0.92rem; color: var(--dark); margin-bottom: 0.2rem; }
+  .foto-card .foto-caption span { font-size: 0.78rem; color: var(--gray); }
+  .foto-card .foto-tag {
+    display: inline-block; background: var(--red-light); color: var(--red-dark);
+    font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem; border-radius: 3px; margin-bottom: 0.35rem;
+  }
+
+  .upload-box {
+    border: 2px dashed var(--red-light);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 2.5rem;
+    background: white;
+  }
+  .upload-box .icon { font-size: 2.5rem; margin-bottom: 0.7rem; }
+  .upload-box p { color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem; }
+  .upload-box .btn-outline {
+    display: inline-block; border: 2px solid var(--red); color: var(--red);
+    padding: 0.6rem 1.5rem; border-radius: 6px; font-weight: 700; font-size: 0.85rem;
+    cursor: pointer; transition: all 0.2s; font-family: inherit; background: transparent;
+    letter-spacing: 0.05em;
+  }
+  .upload-box .btn-outline:hover { background: var(--red); color: white; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: #ccc;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 0;
+  }
+  footer .footer-logo { margin-bottom: 0.8rem; }
+  footer p { font-size: 0.8rem; line-height: 1.7; }
+  footer strong { color: white; }
+  footer .cross { color: var(--gold); font-size: 1.3rem; margin-bottom: 0.4rem; display: block; }
+
+  /* LOGO SVG */
+  .caritas-logo-svg { display: block; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="showPage('home')">
+      <!-- Caritas Cerettese Logo SVG -->
+      <svg class="logo-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Arco superiore per "Caritas Parrocchiale" -->
+          <path id="arcTop" d="M 18,60 A 42,42 0 1,1 102,60"/>
+          <!-- Arco inferiore per "CERETTESE" -->
+          <path id="arcBottom" d="M 22,68 A 38,38 0 0,0 98,68"/>
+        </defs>
+        <!-- Cerchio bordo timbro -->
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C8102E" stroke-width="2.5"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#C8102E" stroke-width="0.8"/>
+        <!-- Testo superiore curvo: Caritas Parrocchiale -->
+        <text font-family="Georgia,serif" font-size="11" fill="#C8102E" font-weight="bold" letter-spacing="2">
+          <textPath href="#arcTop" startOffset="8%">Caritas Parrocchiale</textPath>
+        </text>
+        <!-- Cuori a croce al centro -->
+        <g fill="#C8102E" transform="translate(60,58) scale(0.42) translate(-60,-58)">
+          <path d="M60 15 C60 10 56 6 51 6 C46 6 42 9.5 42 15 C42 22 51 29 60 35 C69 29 78 22 78 15 C78 9.5 74 6 69 6 C64 6 60 10 60 15Z"/>
+          <path d="M60 101 C60 96 56 92 51 92 C46 92 42 95.5 42 101 C42 108 51 115 60 121 C69 115 78 108 78 101 C78 95.5 74 92 69 92 C64 92 60 96 60 101Z" transform="rotate(180,60,58)"/>
+          <path d="M15 58 C10 58 6 54 6 49 C6 44 9.5 40 15 40 C22 40 29 49 35 58 C29 67 22 76 15 76 C9.5 76 6 72 6 67 C6 62 10 58 15 58Z"/>
+          <path d="M105 58 C110 58 114 62 114 67 C114 72 110.5 76 105 76 C98 76 91 67 85 58 C91 49 98 40 105 40 C110.5 40 114 44 114 49 C114 54 110 58 105 58Z"/>
+        </g>
+        <!-- Testo inferiore curvo: CERETTESE -->
+        <text font-family="Georgia,serif" font-size="11" fill="#C8102E" font-weight="bold" letter-spacing="3.5">
+          <textPath href="#arcBottom" startOffset="14%">CERETTESE</textPath>
+        </text>
+      </svg>
+      <div class="nav-title">
+        <span class="main">Cáritas Cerettese</span>
+        <span class="sub">Parrocchia SS. Nome di Maria</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="active" id="nav-home" onclick="showPage('home')">Home</a>
+      <a href="#" id="nav-contatti" onclick="showPage('contatti')">Contatti</a>
+      <a href="#" id="nav-foto" onclick="showPage('foto')">Foto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HOME PAGE ============ -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-logo-wrap">
+      <svg width="90" height="90" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="arcTopH" d="M 18,60 A 42,42 0 1,1 102,60"/>
+          <path id="arcBottomH" d="M 22,68 A 38,38 0 0,0 98,68"/>
+        </defs>
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C8102E" stroke-width="2.5"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#C8102E" stroke-width="0.8"/>
+        <text font-family="Georgia,serif" font-size="11" fill="#C8102E" font-weight="bold" letter-spacing="2">
+          <textPath href="#arcTopH" startOffset="8%">Caritas Parrocchiale</textPath>
+        </text>
+        <g fill="#C8102E" transform="translate(60,58) scale(0.42) translate(-60,-58)">
+          <path d="M60 15 C60 10 56 6 51 6 C46 6 42 9.5 42 15 C42 22 51 29 60 35 C69 29 78 22 78 15 C78 9.5 74 6 69 6 C64 6 60 10 60 15Z"/>
+          <path d="M60 101 C60 96 56 92 51 92 C46 92 42 95.5 42 101 C42 108 51 115 60 121 C69 115 78 108 78 101 C78 95.5 74 92 69 92 C64 92 60 96 60 101Z" transform="rotate(180,60,58)"/>
+          <path d="M15 58 C10 58 6 54 6 49 C6 44 9.5 40 15 40 C22 40 29 49 35 58 C29 67 22 76 15 76 C9.5 76 6 72 6 67 C6 62 10 58 15 58Z"/>
+          <path d="M105 58 C110 58 114 62 114 67 C114 72 110.5 76 105 76 C98 76 91 67 85 58 C91 49 98 40 105 40 C110.5 40 114 44 114 49 C114 54 110 58 105 58Z"/>
+        </g>
+        <text font-family="Georgia,serif" font-size="11" fill="#C8102E" font-weight="bold" letter-spacing="3.5">
+          <textPath href="#arcBottomH" startOffset="14%">CERETTESE</textPath>
+        </text>
+      </svg>
+    </div>
+    <h1>Cáritas Parrocchiale Cerettese</h1>
+    <p class="subtitle">Al servizio dei fratelli con amore e misericordia</p>
+    <p class="parish">Parrocchia SS. Nome di Maria – Ceretta</p>
+  </div>
+
+  <div class="verse-banner">
+    ✝ «Quello che avete fatto a uno solo di questi miei fratelli più piccoli, l'avete fatto a me.»
+    <span>Mt 25,40</span>
+  </div>
+
+  <div class="home-content">
+    <div class="mission-grid">
+      <div class="mission-text">
+        <h2>La nostra missione nella comunità</h2>
+        <p>La Caritas Parrocchiale Cerettese è il braccio operativo della carità della nostra comunità parrocchiale. Animata dallo spirito del Vangelo, si impegna a servire i fratelli in difficoltà con concretezza, discrezione e amore fraterno.</p>
+        <p>Ogni gesto di servizio è un atto di fede vissuta: non ci limitiamo ad assistere, ma testimoniamo la presenza di Cristo in mezzo agli ultimi, ai poveri, ai soli.</p>
+        <p>Come ci insegna la <em>Dottrina Sociale della Chiesa</em>, la carità non è semplice beneficenza ma promozione integrale della persona umana, creata a immagine e somiglianza di Dio.</p>
+        <div class="scripture">
+          «La carità è paziente, è benevola la carità; la carità non è invidiosa, non si vanta, non si gonfia d'orgoglio.»
+          <cite>1 Corinzi 13,4</cite>
+        </div>
+      </div>
+      <div class="church-img-box">
+        <img src="/mnt/user-data/uploads/image_parrocchia.jpg" alt="Parrocchia SS. Nome di Maria – Ceretta" onerror="this.parentElement.style.background='linear-gradient(135deg,#C8102E,#8B0000)'; this.style.display='none'"/>
+        <div class="overlay">⛪ Parrocchia SS. Nome di Maria – Ceretta</div>
+      </div>
+    </div>
+
+    <div class="services-section">
+      <h2>I nostri servizi</h2>
+      <div class="divider"></div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">🍞</div>
+          <h3>Banco Alimentare</h3>
+          <p>Raccolta e distribuzione di generi alimentari a famiglie in difficoltà economica della nostra comunità.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">👕</div>
+          <h3>Guardaroba Solidale</h3>
+          <p>Raccolta e redistribuzione di abiti e indumenti per adulti e bambini, nel rispetto della dignità di ogni persona.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🤝</div>
+          <h3>Ascolto e Orientamento</h3>
+          <p>Uno spazio di accoglienza per chi vive momenti di difficoltà: ascoltiamo, orientiamo e accompagniamo.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">📚</div>
+          <h3>Doposcuola</h3>
+          <p>Supporto scolastico per i bambini e ragazzi della parrocchia, con l'aiuto di volontari preparati e generosi.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">👴</div>
+          <h3>Anziani e Solitudine</h3>
+          <p>Visite e compagnia agli anziani soli, piccoli servizi quotidiani per chi non può muoversi autonomamente.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">✝️</div>
+          <h3>Animazione Liturgica</h3>
+          <p>Momenti di preghiera e riflessione per i volontari, alimentando la radice spirituale del servizio caritativo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h3>Vuoi diventare volontario?</h3>
+      <p>«Ognuno metta a servizio degli altri il dono che ha ricevuto» (1 Pt 4,10). La Caritas ha bisogno di te!</p>
+      <button class="btn-white" onclick="showPage('contatti')">Contattaci →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTATTI PAGE ============ -->
+<div id="page-contatti" class="page">
+  <div class="page-header">
+    <h1>✉ Contatti</h1>
+    <p>Siamo qui per ascoltarti – scrivi o vieni a trovarci</p>
+  </div>
+
+  <div class="contact-content">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Dove siamo</h2>
+        <div class="contact-item">
+          <div class="ci-icon">⛪</div>
+          <div class="ci-text">
+            <strong>Parrocchia</strong>
+            <span>SS. Nome di Maria – Ceretta (BG)</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-text">
+            <strong>Indirizzo</strong>
+            <span>Via alla Parrocchia, Ceretta  10077(TO)</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-text">
+            <strong>Telefono Parrocchia</strong>
+            <span>035 – … (inserire numero)</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">✉️</div>
+          <div class="ci-text">
+            <strong>Email</strong>
+            <span>caritas.cerettese@parrocchia.it</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-text">
+            <strong>Orario Sportello Caritas</strong>
+            <span>Lunedì e Martedì: 14:00 – 15:30</span>
+          </div>
+        </div>
+
+        <div class="scripture-box">
+          <div class="cross">✠</div>
+          <blockquote>«Non manchi fra voi il povero; perciò ti do questo comando: apri largo la mano al tuo fratello bisognoso e povero nel tuo paese.»</blockquote>
+          <cite>Deuteronomio 15,11</cite>
+        </div>
+      </div>
+
+      <div class="contact-form-box">
+        <h2>Scrivici</h2>
+        <div class="form-group">
+          <label>Nome e Cognome</label>
+          <input type="text" placeholder="Il tuo nome">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="tua@email.it">
+        </div>
+        <div class="form-group">
+          <label>Telefono (opzionale)</label>
+          <input type="tel" placeholder="000 0000000">
+        </div>
+        <div class="form-group">
+          <label>Motivo </label>
+          <select>
+            <option>Richiesta di aiuto</option>
+            <option>Diventare volontario</option>
+            <option>Donazioni</option>
+            <option>Informazioni generali</option>
+            <option>Altro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Messaggio</label>
+          <textarea placeholder="Scrivi qui il tuo messaggio…"></textarea>
+        </div>
+        <button class="btn-red" onclick="alert('Messaggio inviato! Vi risponderemo presto. Grazie per aver contattato la Caritas Cerettese.')">✉ Invia Messaggio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOTO PAGE ============ -->
+<div id="page-foto" class="page">
+  <div class="page-header">
+    <h1>📷 Galleria Fotografica</h1>
+    <p>Momenti di comunità, servizio e fraternità</p>
+  </div>
+
+  <div class="foto-content">
+    <div class="foto-intro">
+      <h2>La nostra comunità in Fraternità</h2>
+      <p>«Dov'è carità e amore, lì c'è Dio» — Ubi caritas et amor, Deus ibi est</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="foto-tabs">
+      <button class="foto-tab active" onclick="filterFoto('tutti', this)">Tutti</button>
+      <button class="foto-tab" onclick="filterFoto('eventi', this)">Eventi</button>
+      <button class="foto-tab" onclick="filterFoto('servizi', this)">Servizi</button>
+      <button class="foto-tab" onclick="filterFoto('parrocchia', this)">Parrocchia</button>
+      <button class="foto-tab" onclick="filterFoto('volontari', this)">Volontari</button>
+    </div>
+
+    <div class="foto-grid" id="foto-grid">
+      <div class="foto-card" data-cat="parrocchia">
+        <div class="img-placeholder church-real">
+          <img src="/mnt/user-data/uploads/image_parrocchia.jpg" alt="Chiesa SS. Nome di Maria"/>
+        </div>
+        <div class="foto-caption">
+          <span class="foto-tag">Parrocchia</span>
+          <strong>Chiesa SS. Nome di Maria</strong>
+          <span>La nostra chiesa parrocchiale a Ceretta</span>
+        </div>
+      </div>
+      <div class="foto-card" data-cat="eventi">
+        <div class="img-placeholder" style="background: linear-gradient(135deg,#ffecd2,#fcb69f);">🍞</div>
+        <div class="foto-caption">
+          <span class="foto-tag">Servizi</span>
+          <strong>Distribuzione alimentare</strong>
+          <span>Banco alimentare – Marzo 2025</span>
+        </div>
+      </div>
+      <div class="foto-card" data-cat="volontari">
+        <div class="img-placeholder" style="background: linear-gradient(135deg,#a1c4fd,#c2e9fb);">🤝</div>
+        <div class="foto-caption">
+          <span class="foto-tag">Volontari</span>
+          <strong>I nostri volontari</strong>
+          <span>Incontro formativo – Gennaio 2025</span>
+        </div>
+      </div>
+      <div class="foto-card" data-cat="eventi">
+        <div class="img-placeholder" style="background: linear-gradient(135deg,#fbc2eb,#a6c1ee);">✝️</div>
+        <div class="foto-caption">
+          <span class="foto-tag">Eventi</span>
+          <strong>Messa Caritas</strong>
+          <span>Giornata Mondiale dei Poveri 2024</span>
+        </div>
+      </div>
+      <div class="foto-card" data-cat="servizi">
+        <div class="img-placeholder" style="background: linear-gradient(135deg,#d4fc79,#96e6a1);">👕</div>
+        <div class="foto-caption">
+          <span class="foto-tag">Servizi</span>
+          <strong>Guardaroba solidale</strong>
+          <span>Raccolta abiti – Autunno 2024</span>
+        </div>
+      </div>
+      <div class="foto-card" data-cat="eventi">
+        <div class="img-placeholder" style="background: linear-gradient(135deg,#f8ffae,#43c6ac);">🕯️</div>
+        <div class="foto-caption">
+          <span class="foto-tag">Parrocchia</span>
+          <strong>Quaresima di fraternità</strong>
+          <span>Raccolta fondi – Dicembre 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="upload-box">
+      <div class="icon">📸</div>
+      <p>Hai foto di eventi o attività Caritas da condividere con la comunità?</p>
+      <button class="btn-outline" onclick="alert('Per inviare le tue foto, scrivi a: caritas.cerettese@parrocchia.it oppure consegnale direttamente in parrocchia. Grazie!')">
+        📤 Invia le tue foto
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="60" height="60" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="arcTopF" d="M 18,60 A 42,42 0 1,1 102,60"/>
+        <path id="arcBottomF" d="M 22,68 A 38,38 0 0,0 98,68"/>
+      </defs>
+      <circle cx="60" cy="60" r="56" fill="none" stroke="#C8102E" stroke-width="2.5"/>
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#C8102E" stroke-width="0.8"/>
+      <text font-family="Georgia,serif" font-size="11" fill="#C8102E" font-weight="bold" letter-spacing="2">
+        <textPath href="#arcTopF" startOffset="8%">Caritas Parrocchiale</textPath>
+      </text>
+      <g fill="#C8102E" transform="translate(60,58) scale(0.42) translate(-60,-58)">
+        <path d="M60 15 C60 10 56 6 51 6 C46 6 42 9.5 42 15 C42 22 51 29 60 35 C69 29 78 22 78 15 C78 9.5 74 6 69 6 C64 6 60 10 60 15Z"/>
+        <path d="M60 101 C60 96 56 92 51 92 C46 92 42 95.5 42 101 C42 108 51 115 60 121 C69 115 78 108 78 101 C78 95.5 74 92 69 92 C64 92 60 96 60 101Z" transform="rotate(180,60,58)"/>
+        <path d="M15 58 C10 58 6 54 6 49 C6 44 9.5 40 15 40 C22 40 29 49 35 58 C29 67 22 76 15 76 C9.5 76 6 72 6 67 C6 62 10 58 15 58Z"/>
+        <path d="M105 58 C110 58 114 62 114 67 C114 72 110.5 76 105 76 C98 76 91 67 85 58 C91 49 98 40 105 40 C110.5 40 114 44 114 49 C114 54 110 58 105 58Z"/>
+      </g>
+      <text font-family="Georgia,serif" font-size="11" fill="#C8102E" font-weight="bold" letter-spacing="3.5">
+        <textPath href="#arcBottomF" startOffset="14%">CERETTESE</textPath>
+      </text>
+    </svg>
+  </div>
+  <span class="cross">✠</span>
+  <p>
+    <strong>Caritas Parrocchiale Cerettese</strong><br>
+    Parrocchia SS. Nome di Maria – Ceretta (TO)<br>
+    <em>«Amerai il Signore Dio tuo con tutto il tuo cuore... e il prossimo tuo come te stesso.» (Lc 10,27)</em>
+  </p>
+  <p style="margin-top:0.8rem; font-size:0.72rem; opacity:0.5;">
+    © 2026 Caritas Parrocchiale Cerettese · Tutti i diritti riservati
+  </p>
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function filterFoto(cat, btn) {
+  document.querySelectorAll('.foto-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.foto-card').forEach(card => {
+    if (cat === 'tutti' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
